@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class DalleBehaviour : MonoBehaviour
 {
-    public bool spawner = false;
+    [HideInInspector] public bool spawner = false;
+    [HideInInspector] public bool push = false;
     private WallBehaviour accessList;
 
     [SerializeField] private Material baseMaterial;
@@ -22,6 +23,14 @@ public class DalleBehaviour : MonoBehaviour
         {
             Spawn(1);
         }
+        else if (Input.GetKeyDown(KeyCode.A) && push)
+        {
+          Pushing(-1);  
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && push)
+        {
+            Pushing(1);
+        }
     }
 
     void Spawn(int direction)
@@ -32,6 +41,16 @@ public class DalleBehaviour : MonoBehaviour
         GetComponent<MeshRenderer>().material = baseMaterial;
         accessList = transform.parent.GetComponent("WallBehaviour") as WallBehaviour;
         accessList.accessible.Add(gameObject);
+    }
 
+    void Pushing(int direction)
+    {
+        
+        GetComponent<MeshRenderer>().material = baseMaterial;
+        push = false;
+        accessList = transform.parent.GetComponent("WallBehaviour") as WallBehaviour;
+        accessList.speed = (Mathf.Abs(accessList.speed)+0.05f) * direction;
+        accessList.accessible.Add(gameObject);
+        
     }
 }
