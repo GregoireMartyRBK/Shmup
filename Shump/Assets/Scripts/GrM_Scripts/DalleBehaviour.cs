@@ -12,28 +12,23 @@ public class DalleBehaviour : MonoBehaviour
 
     [SerializeField] private Material baseMaterial;
     [SerializeField] private GameObject spawnable;
+    
 
-    private void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.Q) && spawner)
+        
+        if (spawner)
         {
-            Spawn(-1);
+            Spawn(Mathf.Sign(other.transform.position.x - transform.position.x));
         }
-        else if (Input.GetKeyDown(KeyCode.D) && spawner)
+        else if (push)
         {
-            Spawn(1);
+            Pushing(Mathf.Sign(other.transform.position.x - transform.position.x));
         }
-        else if (Input.GetKeyDown(KeyCode.A) && push)
-        {
-          Pushing(-1);  
-        }
-        else if (Input.GetKeyDown(KeyCode.E) && push)
-        {
-            Pushing(1);
-        }
+        Destroy(other.gameObject);
     }
 
-    void Spawn(int direction)
+    void Spawn(float direction)
     {
         Instantiate(spawnable,
             new Vector3(transform.position.x + 3 * direction, transform.position.y, transform.position.z),quaternion.identity);
@@ -43,7 +38,7 @@ public class DalleBehaviour : MonoBehaviour
         accessList.accessible.Add(gameObject);
     }
 
-    void Pushing(int direction)
+    void Pushing(float direction)
     {
         
         GetComponent<MeshRenderer>().material = baseMaterial;

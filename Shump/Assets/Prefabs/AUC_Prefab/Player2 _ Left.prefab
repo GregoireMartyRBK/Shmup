@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 9
+  readyToShoot: 0
 --- !u!1 &7129751829713658202
 GameObject:
   m_ObjectHideFlags: 0

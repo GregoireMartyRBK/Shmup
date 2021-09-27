@@ -129,3 +129,4 @@ MonoBehaviour:
   hAxis: 0
   vAxis: 0
   moveSpeed: 9
+  readyToShoot: 0
