@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,11 +10,12 @@ public class PlayerController : MonoBehaviour
     public float vAxis;
     public float moveSpeed = 30f;
     public bool readyToShoot;
+    
+    [SerializeField] float resetshoot;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(Input.GetJoystickNames());
         readyToShoot = true;
     }
 
@@ -28,13 +30,13 @@ public class PlayerController : MonoBehaviour
         hAxis = Input.GetAxis("Gamepad1_Horizontal");
         vAxis = Input.GetAxis("Gamepad1_Vertical");
         
-        if (hAxis > 0.2)
+        if (hAxis > 0.2 && transform.position.x < 8.2)
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
         if (hAxis < -0.2)
             transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-        if (vAxis > 0.4)
+        if (vAxis > 0.4 && transform.position.y > - 3.7)
             transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
-        if(vAxis < -0.4)
+        if(vAxis < -0.4 && transform.position.y < 3.7)
             transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
         if (Input.GetAxis("Gamepad1_xButton") != 0)
         {
@@ -49,7 +51,7 @@ public class PlayerController : MonoBehaviour
     {
         readyToShoot = false;
         ObjectPooler.Instance.SpawnFromPool("Player1_Bullet", transform.GetChild(0).position, Quaternion.identity);
-        Invoke(("ResetShoot"), 0.26f);
+        Invoke(("ResetShoot"), resetshoot);
     }
 
     private void ResetShoot()

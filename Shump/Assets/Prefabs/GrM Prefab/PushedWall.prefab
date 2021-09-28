@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 5611574810692784086}
   - component: {fileID: 1718528983783138141}
   - component: {fileID: 2393710653961445862}
-  - component: {fileID: 1512506406396860633}
-  - component: {fileID: 8450873525388070572}
+  - component: {fileID: -75819435603922457}
+  - component: {fileID: 8454915956940548513}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: PushedWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 54140589337693068}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.42, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.3, z: 0.5}
+  m_LocalScale: {x: 0.5, y: 0.3, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1158ff0cd94f26e49b527e59439ef1e2, type: 2}
+  - {fileID: 2100000, guid: fc28dfb789eef2447bd8809d847fe7be, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,21 +83,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1512506406396860633
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54140589337693068}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &8450873525388070572
+--- !u!114 &-75819435603922457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,7 +92,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 54140589337693068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f4c3bf70cf4dac449d443880432570f, type: 3}
+  m_Script: {fileID: 11500000, guid: 550c5724d598f6f4ba8a431b550c9a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test: 0
+  speed: 0
+--- !u!65 &8454915956940548513
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54140589337693068}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 1.9999999, z: 1.0000002}
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}

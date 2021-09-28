@@ -9,30 +9,44 @@ public class DalleBehaviour : MonoBehaviour
     [HideInInspector] public bool spawner = false;
     [HideInInspector] public bool push = false;
     private WallBehaviour accessList;
+    private GameObject spawnedWall;
 
     [SerializeField] private Material baseMaterial;
     [SerializeField] private GameObject spawnable;
     
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         
-        if (spawner)
+        if (spawner && other.gameObject.tag == "Bullet")
         {
-            Spawn(Mathf.Sign(other.transform.position.x - transform.position.x));
+            Spawn(Mathf.Sign(transform.position.x - other.transform.position.x));
         }
-        else if (push)
+        else if (push && other.gameObject.tag == "Bullet")
         {
-            Pushing(Mathf.Sign(other.transform.position.x - transform.position.x));
+            Pushing(Mathf.Sign(transform.position.x - other.transform.position.x));
         }
-        Destroy(other.gameObject);
+
+        if (other.gameObject.tag != "RedPlayer" && other.gameObject.tag != "BluePlayer")
+        {
+            Destroy(other.gameObject);
+        }
+        else
+        {
+            transform.parent.GetComponent<WallBehaviour>().speed =
+                transform.parent.GetComponent<WallBehaviour>().speed * -1;
+            other.gameObject.GetComponent<HealthManager>().DamageDealt();
+        }
+        
     }
 
     void Spawn(float direction)
     {
-        Instantiate(spawnable,
-            new Vector3(transform.position.x + 3 * direction, transform.position.y, transform.position.z),quaternion.identity);
+        spawnedWall = Instantiate(spawnable,
+            new Vector3(transform.position.x + 0.5f * direction, transform.position.y, transform.position.z),quaternion.identity);
         spawner = false;
+        spawnedWall.GetComponent<PushedWallBehaviour>().speed = direction * 2;
+        
         GetComponent<MeshRenderer>().material = baseMaterial;
         accessList = transform.parent.GetComponent("WallBehaviour") as WallBehaviour;
         accessList.accessible.Add(gameObject);

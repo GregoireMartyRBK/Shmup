@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 5462939952164490321}
   - component: {fileID: 5462939952164490320}
   - component: {fileID: -5928046489876145299}
-  - component: {fileID: -4398488617938952840}
   - component: {fileID: 2033491120598327626}
+  - component: {fileID: 311546675067066417}
   m_Layer: 0
   m_Name: Player2_BulletPrefab
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,7 +97,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea44db73c7da8b941b0fcecc256da9db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &-4398488617938952840
+--- !u!65 &2033491120598327626
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5462939952164490335}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 1.0000001, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &311546675067066417
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,17 +125,4 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &2033491120598327626
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5462939952164490335}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0000001, y: 1.0000001, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_CollisionDetection: 2

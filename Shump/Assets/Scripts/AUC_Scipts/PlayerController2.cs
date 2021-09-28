@@ -6,7 +6,8 @@ public class PlayerController2 : MonoBehaviour
 {
     public float moveSpeed;
     public bool readyToShoot;
-
+    [SerializeField] private float resetShoot;
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -21,13 +22,13 @@ public class PlayerController2 : MonoBehaviour
 
     private void MyInput()
     {
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) )
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q)&& transform.position.x > -8.15)
             transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) && transform.position.y > - 3.7)
             transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
-        if(Input.GetKey(KeyCode.Z))
+        if(Input.GetKey(KeyCode.Z) && transform.position.y < 3.7)
             transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
         if (Input.GetKey(KeyCode.Mouse0))
         {
@@ -43,7 +44,7 @@ public class PlayerController2 : MonoBehaviour
     {
         readyToShoot = false;
         ObjectPooler.Instance.SpawnFromPool("Player2_Bullet", transform.GetChild(0).position, Quaternion.identity);
-        Invoke(("ResetShoot"), 0.26f);
+        Invoke(("ResetShoot"), resetShoot);
     }
 
     private void ResetShoot()
